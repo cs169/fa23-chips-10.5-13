@@ -1,0 +1,24 @@
+project:
+  name: 'CS169-fa23-13'
+  owner: 'fa23'
+  teamId: '13'
+  identities: {}
+  notifications:
+    email: 'anyashah@berkeley.edu'
+  members:
+    member1:
+      name: 'Anya'
+      surname: 'Shah'
+      githubUsername: 'anya-shah'
+    member2:
+      name: 'Eric'
+      surname: 'Lee' 
+      githubUsername: 'furioe1'
+    member3:
+      name: 'Gugab'
+      surname: 'Park' 
+      githubUsername: 'gpment'
+    member4:
+      name: 'Jerry'
+      surname: 'Li' 
+      githubUsername: 'Fylthy-Cazual'
