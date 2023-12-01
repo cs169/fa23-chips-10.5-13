@@ -1,0 +1,30 @@
+<h2> Representative <em><%= @representative.name %></em> Profile</h2>
+
+<ul id="details">
+  <li>
+    Photo:
+    <%= image_tag @photo %>
+  </li>
+  <li>
+    OCD ID:
+    <%= @representative.ocdid %>
+  </li>
+  <li>
+    Title:
+    <%= @representative.title %>
+  </li>
+  <li>
+    Party:
+    <%= @party %>
+  </li>
+</ul>
+
+<h3> Address: </h3>
+<address>
+  <%= @addr["line1"] %><br />
+  <%= if !@addr["line2"].nil? then @addr["line2"] %><br />
+  <%= if !@addr["line3"].nil? then @addr["line3"] %><br />
+  <%= addr["city"] %>, <%= addr["state"] %><br />
+  <%= addr["zip"] %><br />
+  USA
+</address>

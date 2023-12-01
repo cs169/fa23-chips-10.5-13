@@ -13,6 +13,7 @@
             .table-responsive-md
                 %table.table.table-striped.table-hover#events
                     %caption Table of News Items for #{@representative.name}
+                    = link_to #{@representative.name}, representative_path(@representative)
                     %thead.thead-dark
                         %tr
                             %th #
