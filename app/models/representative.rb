@@ -18,9 +18,10 @@ class Representative < ApplicationRecord
       end
 
       rep = Representative.where({ name: official.name, ocdid: ocdid_temp, title: title_temp })
-      if (rep.length() != 0)
-        rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
-          title: title_temp })
+      if (rep.length() == 0)
+        rep = Representative.create!({ name: official.name, ocdid: ocdid_temp, title: title_temp })
+      else
+        rep = rep.first
       end
       reps.push(rep)
       
