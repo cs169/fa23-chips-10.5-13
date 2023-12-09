@@ -1,35 +1,40 @@
 = form_for news_item, url: form_url, html: { method: form_method } do |f|
-    - if f.object.errors.any?
-        .alert.alert-danger
-            %h2
-                "#{pluralize(f.object.errors.count, 'error')} prohibited this news from being saved:"
-            %ul
-                - f.object.errors.full_messages.each do |message|
-                    %li= message
-    .form-group.row
-        .col-sm-2
-            = f.label :title, 'Title:', class: 'col-form-label'
-        .col-sm-10
-            = f.text_field :title, class: 'form-control', placeholder: 'Brief title of article...'
-    .form-group.row
-        .col-sm-2
-            = f.label :link, 'Link', class: 'col-form-label'
-        .col-sm-10
-            = f.text_field :link, class: 'form-control', placeholder: 'Link to external article...'
-    .form-group.row
-        .col-sm-2
-            = f.label :description, class: 'col-form-label'
-        .col-sm-10
-            = f.text_area :description, class: 'form-control', placeholder: 'Describe the contents of the article...'
-    .form-group.row
-        .col-sm-2
-            = f.label :representative_id, class: 'col-form-label'
-        .col-sm-10
-            = f.select :representative_id, representatives_list, { include_blank: true }, class: 'form-control'
-    .form-group.row
-        .col-sm-2
-            = f.label :issue, 'Issue:', class: 'col-form-label'
-        .col-sm-10
-            = f.select :issue, NewsItem.issues.keys, { include_blank: true }, class: 'form-control'
-    .actions
-        = f.submit 'Save', class: 'btn btn-primary'
+  - if news_item.errors.any?
+    .alert.alert-danger
+      %h2
+        "#{pluralize(news_item.errors.count, 'error')} prohibited this news from being saved:"
+      %ul
+        - news_item.errors.full_messages.each do |message|
+          %li= message
+  .form-group.row
+    .col-sm-2
+      = label :news_item, :representative_id, class: 'col-form-label'
+    .col-sm-10
+      = representative.name
+  .form-group.row
+    .col-sm-2
+      = label :news_item, :issue, 'Issue', class: 'col-form-label'
+    .col-sm-10
+      = params[:issue]
+  .form-group.row
+    .col-sm-10
+      %table.table.table-stripedtable-hover#events
+        %caption Table of Top Headlines
+        %thead.thead-dark
+          %tr
+            %th Select
+            %th Title
+            %th Description
+            %th Link
+
+        %tbody
+          - @headlines.each do |headline|
+            %tr
+              %td
+                = radio_button_tag 'article', headline
+              %td= headline['title'] 
+              %td= headline['description']
+              %td
+                = link_to "link", headline['url']
+  .actions
+    = f.submit 'Save', class: 'btn btn-primary'
