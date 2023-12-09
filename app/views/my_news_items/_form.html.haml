@@ -8,25 +8,33 @@
                     %li= message
     .form-group.row
         .col-sm-2
-            = label :news_item, :title, 'Title:', class: 'col-form-label'
-        .col-sm-10
-            = text_field :news_item, :title, { class: 'form-control', placeholder: 'Brief title of article...' }
-    .form-group.row
-        .col-sm-2
-            = label :news_item, :link, 'Link', class: 'col-form-label'
-        .col-sm-10
-            = text_field :news_item, :link, { class: 'form-control', placeholder: 'Link to external article...' }
-    .form-group.row
-        .col-sm-2
-            = label :news_item, :description, class: 'col-form-label'
-        .col-sm-10
-            = text_area :news_item, :description, { class: 'form-control',
-            placeholder: 'Describe the contents of the article...' }
-    .form-group.row
-        .col-sm-2
             = label :news_item, :representative_id, class: 'col-form-label'
         .col-sm-10
-            = select :news_item, :representative_id, representatives_list, { include_blank: true },
-            class: 'form-control'
+            = representative.name
+    .form-group.row
+        .col-sm-2
+            = label :news_item, :issue, 'Issue', class: 'col-form-label'
+        .col-sm-10
+            = params[:issue]
+    .form-group.row
+        .col-sm-10
+          %table.table.table-stripedtable-hover#events
+            %caption Table of Top Headlines
+            %thead.thead-dark
+              %tr
+                %th Select
+                %th Title
+                %th Description
+                %th Link
+
+            %tbody
+              - headlines.each do |headline|
+                %tr
+                  %td
+                    = radio_button_tag 'article', headline
+                  %td = headline['title'] 
+                  %td = headline['description']
+                  %td
+                    = link_to "link", headline['url']
     .actions
         = f.submit 'Save', class: 'btn btn-primary'

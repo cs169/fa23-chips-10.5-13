@@ -7,6 +7,18 @@ class MyNewsItemsController < SessionController
 
   def new
     @news_item = NewsItem.new
+
+
+    rep_id = params[:representative_id]
+    @representative = Representative.find(rep_id)
+    issue = params[:issue]
+    api_key = "39bd6a9850714710b7884e00aea3ba73";
+    
+    @headlines = []
+    if rep_id.nil? or issue.nil?
+      render :new, error: 'An error occured when searching the news item.'
+    end
+    @headlines = NewsItem.get_topheadlines(repi_id, issue, api_key)
   end
 
   def edit; end
@@ -34,6 +46,12 @@ class MyNewsItemsController < SessionController
     @news_item.destroy
     redirect_to representative_news_items_path(@representative),
                 notice: 'News was successfully destroyed.'
+  end
+
+  def search
+    
+    render :search
+
   end
 
   private
