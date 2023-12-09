@@ -17,5 +17,9 @@ describe MapController do
       get :state, params: {state_symbol: 'tx'}
       expect(assigns(:state)).to eq(@texas)
     end
+    it 'redirects if state not found' do
+      get :state, params: {state_symbol: 'az'}
+      expect(response.status).to eq(302)
+    end
   end
 end
