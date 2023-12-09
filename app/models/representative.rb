@@ -27,13 +27,14 @@ class Representative < ApplicationRecord
           address_list = official.address[0]
           address_temp = "#{address_list.line1} #{address_list.city} #{address_list.state} #{address_list.zip}"
         end
-        rep = Representative.create!({ 
+        rep = Representative.new(
           name: official.name, 
           ocdid: ocdid_temp,
           title: title_temp,
           address: address_temp,
           political_party: party,
-          photo_url: photo})
+          photo_url: photo)
+        rep.save!
       else
         rep = rep.first
       end
