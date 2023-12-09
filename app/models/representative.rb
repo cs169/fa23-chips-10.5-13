@@ -22,13 +22,13 @@ class Representative < ApplicationRecord
 
       rep = Representative.where({ name: official.name, ocdid: ocdid_temp, title: title_temp })
       if (rep.length() == 0)
-        address_temp = ''
+        address_temp = nil
         if !official.address.nil? and !official.address.length.zero?
           address_list = official.address[0]
           address_temp = "#{address_list.line1} #{address_list.city} #{address_list.state} #{address_list.zip}"
         end
         rep = Representative.new(
-          name: official.name, 
+          name: official.name,
           ocdid: ocdid_temp,
           title: title_temp,
           address: address_temp,
