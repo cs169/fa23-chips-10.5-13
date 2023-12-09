@@ -17,18 +17,16 @@ class Representative < ApplicationRecord
         end
       end
 
-      address_temp = ''
-      if !official.address.nil? and !official.address.length.zero?
-        address_list = official.address[0]
-        address_temp = "#{address_list.line1} #{address_list.city} #{address_list.state} #{address_list.zip}"
-      end
-
       party = official.party
       photo = official.photo_url
 
-
       rep = Representative.where({ name: official.name, ocdid: ocdid_temp, title: title_temp })
       if (rep.length() == 0)
+        address_temp = ''
+        if !official.address.nil? and !official.address.length.zero?
+          address_list = official.address[0]
+          address_temp = "#{address_list.line1} #{address_list.city} #{address_list.state} #{address_list.zip}"
+        end
         rep = Representative.create!({ 
           name: official.name, 
           ocdid: ocdid_temp,
@@ -41,7 +39,6 @@ class Representative < ApplicationRecord
       end
       reps.push(rep)
     end
-
     reps
   end
 end
