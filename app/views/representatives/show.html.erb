@@ -1,0 +1,29 @@
+<h2><%= @representative.title %> <b><em><%= @representative.name %></em></b> </h2>
+
+<p>
+<h3>Photo:</h3>
+  <% if !@photo.nil? %>
+    <%= image_tag(@photo) %>
+  <% else %>
+    Picture not found!
+  <% end %>
+</p>
+
+<h3>Details:</h3>
+<ul>
+  <li>
+    Party: 
+    <%= @party %>
+  </li>
+  <li>
+    OCDID:
+    <%= @representative.ocdid %>
+  </li>
+</ul>
+
+<address>
+  <% if !@address.nil? %>
+    <h3>Address:</h3>
+    <%= @address %> <br>
+  <% end %>
+</address>
